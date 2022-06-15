@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Vector;
@@ -38,6 +39,10 @@ public class searchPhonenumber {
     public static void run() throws Exception {
         byte[] b = new byte[999999];
         Vector<String> v = new Vector<String>();
+        if (!new File(".\\phonebook.txt").exists()) {
+            io.print("전화번호부가 비어있습니다.");
+            return;
+        }
         FileInputStream fi = new FileInputStream(".\\phonebook.txt");
         fi.read(b);
         fi.close();
