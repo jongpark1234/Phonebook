@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) throws Exception {
         int commandNumber;
+        utility.clearConsole();
         while (true) {
             io.print("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 전화번호부 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
             io.print("1. 전화번호 등록\t2. 전화번호 검색\t3. 전화번호 삭제\n4. 프로그램 종료\n");
@@ -9,6 +10,7 @@ public class Main {
                 commandNumber = Integer.parseInt(io.input());
                 utility.clearConsole();
             } catch (Exception e) {
+                utility.clearConsole();
                 io.print("정수를 입력해주세요.");
                 continue;
             }
