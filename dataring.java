@@ -23,7 +23,6 @@ public class dataring {
         while (true) {
             io.print(message + "\n\n이름 또는 전화번호를 입력해주세요. ( 일부만 입력해도 됩니다. )\n명령을 취소하려면 X를 입력해주세요.\n");
             data = io.input();
-            io.print(data);
             if (data.equals("X")) {
                 ret.add(data);
                 return ret;
