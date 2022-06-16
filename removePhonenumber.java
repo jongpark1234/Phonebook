@@ -33,7 +33,7 @@ public class removePhonenumber {
             }
             if (phonenumArray.length == 0) {
                 utility.clearConsole();
-                io.print("검색 결과가 존재하지 않습니다.\n");
+                messages.searchResultNotFoundMessage();
                 continue;
             }
             Arrays.sort(phonenumArray);
@@ -52,7 +52,7 @@ public class removePhonenumber {
                     break;
                 } catch (Exception e) {
                     utility.clearConsole();
-                    io.print("인덱스 범위를 벗어났습니다. 다시 입력해주세요.");
+                    messages.indexErrorMessage();
                 }
             }
             for (String i: dataList) {

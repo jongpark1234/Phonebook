@@ -28,7 +28,7 @@ public class searchPhonenumber {
             Arrays.sort(phonenumArray);
             if (phonenumArray.length == 0) {
                 utility.clearConsole();
-                io.print("검색 결과가 존재하지 않습니다.\n");
+                messages.searchResultNotFoundMessage();
                 continue;
             }
             io.print("\n총 " + Integer.toString(phonenumArray.length) + "개의 검색 결과\n");
