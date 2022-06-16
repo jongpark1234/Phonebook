@@ -34,6 +34,7 @@ public class Main {
                 default:
                     break;
             }
+            utility.clearConsole();
         }
     }
 }

@@ -10,7 +10,7 @@ public class inputPhonenumber {
                     break;
                 else {
                     utility.clearConsole();
-                    utility.retryMessage();
+                    messages.retryMessage();
                 }
             }
             else {
@@ -18,7 +18,7 @@ public class inputPhonenumber {
                     break;
                 }
                 utility.clearConsole();
-                utility.retryMessage();
+                messages.retryMessage();
             }
         }
         return data;
@@ -26,7 +26,7 @@ public class inputPhonenumber {
     public static void run() throws Exception {
         String[] data = inputData();
         utility.clearConsole();
-        FileOutputStream file = new FileOutputStream(".\\phonebook.txt", true);
+        FileOutputStream file = new FileOutputStream(utility.DIR, true);
         if (data.length == 2) {
             file.write((data[0] + " " + data[1] + "\n").getBytes());
             io.print("성공적으로 등록되었습니다.");
