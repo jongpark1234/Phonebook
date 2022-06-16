@@ -7,6 +7,7 @@ public class searchPhonenumber {
         for (Object i: arr) {
             io.print(i.toString());
         }
+        io.print("");
     }
     public static void run() throws Exception {
         if (!utility.fileExists()) {
@@ -19,6 +20,11 @@ public class searchPhonenumber {
         fi.close();
         while (true) {
             Object[] phonenumArray = dataring.chooseData(dataring.getFile(b, false), "전화번호 검색").toArray();
+            if (utility.isCanceled(phonenumArray)) {
+                utility.clearConsole();
+                messages.cancelMessage();
+                break;
+            }
             Arrays.sort(phonenumArray);
             if (phonenumArray.length == 0) {
                 utility.clearConsole();

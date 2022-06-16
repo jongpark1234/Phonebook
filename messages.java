@@ -7,4 +7,7 @@ public class messages {
     public static void retryMessage() throws IOException {
         io.print("재입력 바랍니다.");
     }
+    public static void cancelMessage() throws IOException {
+        io.print("명령을 취소하였습니다.");
+    }
 }

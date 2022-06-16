@@ -4,8 +4,7 @@ public class dataring {
         int idx = 0;
         Vector<String> ret = new Vector<String>();
         for (String i: new String(b).trim().split("\n")) {
-            String temp = isNumbering ? i + " " + Integer.toString(idx++) : i;
-            ret.add(temp);
+            ret.add(isNumbering ? i + " " + Integer.toString(idx++) : i);
         }
         return ret;
     }
@@ -22,8 +21,13 @@ public class dataring {
         String data;
         Vector<String> ret = new Vector<String>();
         while (true) {
-            io.print(message + "\n\n이름 또는 전화번호를 입력해주세요. ( 일부만 입력해도 됩니다. )\n");
+            io.print(message + "\n\n이름 또는 전화번호를 입력해주세요. ( 일부만 입력해도 됩니다. )\n명령을 취소하려면 X를 입력해주세요.\n");
             data = io.input();
+            io.print(data);
+            if (data.equals("X")) {
+                ret.add(data);
+                return ret;
+            }
             if (data.matches("[가-힣]+")) { // 이름 검색
                 ret = choosing(v, data, 0);
                 break;

@@ -26,21 +26,35 @@ public class removePhonenumber {
         while (true) {
             Vector<String> dataList = dataring.getFile(b, true);
             Object[] phonenumArray = dataring.chooseData(dataList, "전화번호 삭제").toArray();
-            Arrays.sort(phonenumArray);
-            printArray(phonenumArray);
+            if (utility.isCanceled(phonenumArray)) {
+                utility.clearConsole();
+                messages.cancelMessage();
+                break;
+            }
             if (phonenumArray.length == 0) {
                 utility.clearConsole();
                 io.print("검색 결과가 존재하지 않습니다.\n");
                 continue;
             }
-            io.print("삭제할 번호를 입력해주세요. 명령을 취소하려면 0을 입력해주세요.");
-            deleteNumber = Integer.parseInt(io.input()) - 1;
-            if (deleteNumber < 0) {
-                utility.clearConsole();
-                io.print("명령을 취소했습니다.");
-                return;
+            Arrays.sort(phonenumArray);
+            while (true) {
+                printArray(phonenumArray);
+                io.print("삭제할 번호를 입력해주세요. 명령을 취소하려면 X를 입력해주세요.");
+                try {
+                    deleteNumber = Integer.parseInt(io.input()) - 1;
+                } catch (Exception e) {
+                    utility.clearConsole();
+                    messages.cancelMessage();
+                    return;
+                }
+                try {
+                    dataList.remove(Integer.parseInt(phonenumArray[deleteNumber].toString().split(" ")[2]));
+                    break;
+                } catch (Exception e) {
+                    utility.clearConsole();
+                    io.print("인덱스 범위를 벗어났습니다. 다시 입력해주세요.");
+                }
             }
-            dataList.remove(Integer.parseInt(phonenumArray[deleteNumber].toString().split(" ")[2]));
             for (String i: dataList) {
                 String[] temp = i.split(" ");
                 ret.append(temp[0] + " " + temp[1] + "\n");
@@ -48,7 +62,10 @@ public class removePhonenumber {
             FileOutputStream fo = new FileOutputStream(utility.DIR, false);
             fo.write(ret.toString().getBytes());
             fo.close();
+            utility.clearConsole();
+            io.print("성공적으로 삭제하였습니다.");
             break;
         }
+        
     }
 }
