@@ -21,8 +21,8 @@ public class dataring {
         String data;
         Vector<String> ret = new Vector<String>();
         while (true) {
-            io.print(message + "\n\n이름 또는 전화번호를 입력해주세요. ( 일부만 입력해도 됩니다. )\n명령을 취소하려면 X를 입력해주세요.\n");
-            data = io.input(); // 이름 / 전화번호를 입력받음.
+            IOStream.print(message + "\n\n이름 또는 전화번호를 입력해주세요. ( 일부만 입력해도 됩니다. )\n명령을 취소하려면 X를 입력해주세요.\n");
+            data = IOStream.input(); // 이름 / 전화번호를 입력받음.
             if (data.equals("X")) { // 입력받은 값이 X 라면 ( 명령을 취소한다면 )
                 ret.add(data); // X를 넣고
                 return ret; // 벡터 반환
