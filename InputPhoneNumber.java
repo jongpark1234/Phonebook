@@ -1,6 +1,7 @@
 import java.io.FileOutputStream;
-public class InputPhoneNumber {
-    static String[] inputData() throws Exception {
+
+public class InputPhoneNumber extends PhoneBookTask {
+    private String[] inputData() throws Exception {
         String[] data; // 입력받을 데이터를 저장할 변수
         while (true) {
             IOStream.print("전화번호 등록\n\n\"이름 010-1234-5678\" 형태로 정보를 입력해주세요. 해당 명령을 취소하려면 \"X\"를 입력해주세요.\n");
@@ -12,8 +13,7 @@ public class InputPhoneNumber {
                     Utility.clearConsole(); // 터미널 청소
                     Messages.retryMessage(); // 재시도 메세지
                 }
-            }
-            else { // 정상적으로 입력되지 않았다면
+            } else { // 정상적으로 입력되지 않았다면
                 if (data[0].equalsIgnoreCase("X")) { // 명령 실행 종료 명령을 받을 시
                     break; // 반복문 탈출
                 }
@@ -23,7 +23,9 @@ public class InputPhoneNumber {
         }
         return data; // 데이터 반환
     }
-    public static void run() throws Exception {
+
+    @Override
+    public void run() throws Exception {
         String[] data = inputData(); // 데이터 입력
         Utility.clearConsole(); // 터미널 청소
         FileOutputStream file = new FileOutputStream(Utility.DIR, true); // 파일을 쓸 FileOutputStream
@@ -35,5 +37,10 @@ public class InputPhoneNumber {
         }
         Messages.cancelMessage(); // X를 입력받았다면 명령 취소 메세지 출력
         file.close(); // 파일 닫음
+    }
+
+    @Override
+    public String getTaskName() {
+        return "전화번호 등록";
     }
 }

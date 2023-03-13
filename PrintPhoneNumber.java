@@ -1,10 +1,9 @@
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PrintPhoneNumber {
-    public static void run() throws Exception {
+public class PrintPhoneNumber extends PhoneBookTask {
+    @Override
+    public void run() throws Exception {
         if (!Utility.fileExists()) { // 파일이 존재하지 않는다면
             Messages.fileNotFoundMessage(); // 파일이 존재하지 않는다는 메세지 출력
             return; // 명령 종료
@@ -22,5 +21,10 @@ public class PrintPhoneNumber {
         }
         IOStream.print("");
         Utility.checking(); // 체킹
+    }
+
+    @Override
+    public String getTaskName() {
+        return "전화번호 목록";
     }
 }

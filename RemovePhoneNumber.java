@@ -1,12 +1,15 @@
 import java.io.FileOutputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class RemovePhoneNumber {
-    public static void run() throws Exception {
+public class RemovePhoneNumber extends PhoneBookTask {
+    @Override
+    public void run() throws Exception {
         if (!Utility.fileExists()) { // 파일이 존재하지 않는다면
             Messages.fileNotFoundMessage(); // 파일이 존재하지 않는다는 메세지 출력
             return; // 명령 종료
-        } 
+        }
         StringBuilder ret = new StringBuilder(); // 파일에 덮어 씌울 StringBuilder
         int deleteNumber; // 지울 요소의 인덱스를 저장할 int
         List<String> data = DataReader.fetchFileAndClose(Utility.DIR, true);
@@ -49,7 +52,7 @@ public class RemovePhoneNumber {
                     Messages.indexErrorMessage(); // 인덱스가 초과됐다는 메세지를 출력함.
                 }
             }
-            for (String i: phoneNumArray) { // 전체 데이터 목록을 한 바퀴씩 순회함.
+            for (String i : phoneNumArray) { // 전체 데이터 목록을 한 바퀴씩 순회함.
                 String[] temp = i.split(" "); // 값을 ['이름', '전화번호', '인덱스'] 형태로 나눔. 이는 파일에 저장할 때 필요하지 않은 인덱스를 제거하기 위함.
                 ret.append(temp[0]).append(" ").append(temp[1]).append("\n"); // 이름과 전화번호를 넣은 후 StringBuilder에 추가
             }
@@ -60,6 +63,10 @@ public class RemovePhoneNumber {
             IOStream.print("성공적으로 삭제하였습니다."); // 삭제 완료 메세지를 출력함.
             break; // 해당 명령 종료
         }
-        
+    }
+
+    @Override
+    public String getTaskName() {
+        return "전화번호 삭제";
     }
 }

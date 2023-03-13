@@ -1,12 +1,9 @@
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
-public class SearchPhoneNumber {
-    public static void run() throws Exception {
+public class SearchPhoneNumber extends PhoneBookTask {
+    @Override
+    public void run() throws Exception {
         if (!Utility.fileExists()) { // 파일이 존재하지 않는다면
             Messages.fileNotFoundMessage(); // 파일이 존재하지 않는다는 메세지 출력
             return; // 명령 종료
@@ -28,11 +25,16 @@ public class SearchPhoneNumber {
             }
             Collections.sort(phoneNumArray); // 검색으로 얻은 데이터들을 이름 기준 오름차순으로 정렬함.
             IOStream.print("\n총 " + phoneNumArraySize + "개의 검색 결과\n"); // 얻은 결과의 개수 출력
-            for (String i: phoneNumArray) // 배열 내 요소 반복
+            for (String i : phoneNumArray) // 배열 내 요소 반복
                 IOStream.print(i); // 해당 요소를 String 형태로 변환한 뒤 출력함.
             IOStream.print("");
             Utility.checking(); // 체킹
             break; // 해당 명령 종료
         }
+    }
+
+    @Override
+    public String getTaskName() {
+        return "전화번호 검색";
     }
 }
